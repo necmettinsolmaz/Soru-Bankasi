@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru Test Oluşturucu - Güncel Taslak</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Soru Test Oluşturucu</h1>
+        <nav>
+            <button id="nav-konu-yonetimi">Konu Yönetimi</button> 
+            <button id="nav-soru-ekle">Soru Kütüphanesi</button>
+            <button id="nav-test-olustur">Test Oluştur</button>
+        </nav>
+    </header>
+
+    <main>
+        
+        <section id="konu-yonetimi" class="hidden">
+            <h2>0. Konu ve Alt Konu Yönetimi</h2>
+            
+            <div class="konu-ekle-formu">
+                <h3>Yeni Konu Ekle</h3>
+                <input type="text" id="yeni-konu-adi" placeholder="Örn: Matematik, Fizik, Türkçe">
+                <button id="konu-ekle-btn">Konu Ekle</button>
+            </div>
+            
+            <div class="alt-konu-ekle-formu">
+                <h3>Alt Konu Ekle</h3>
+                <select id="alt-konu-secilen-konu">
+                    <option value="">Önce Konu Seçiniz</option>
+                    </select>
+                <input type="text" id="yeni-alt-konu-adi" placeholder="Örn: Türev, Basınç, Sözcükte Anlam">
+                <button id="alt-konu-ekle-btn">Alt Konu Ekle</button>
+            </div>
+
+            <h3>Kayıtlı Konular</h3>
+            <div id="kayitli-konular-listesi">
+                <p>Henüz kayıtlı konu yok.</p>
+            </div>
+        </section>
+
+        <section id="soru-kutuphanesi" class="active">
+            <h2>1. Soru Ekle ve Yönet</h2>
+            
+            <div class="soru-ekleme-formu">
+                <h3>Yeni Soru Ekle</h3>
+                <input type="file" id="soru-resmi" accept="image/*">
+                
+                <div id="resim-onizleme-alani"></div>
+
+                <form id="meta-veri-form">
+                    <label for="konu">Konu:</label>
+                    <select id="konu" required>
+                        <option value="">Konu Seçiniz</option>
+                    </select>
+
+                    <label for="alt-konu">Alt Konu:</label>
+                    <select id="alt-konu" required disabled> 
+                        <option value="">Önce Konu Seçiniz</option>
+                    </select>
+
+                    <label for="zorluk">Zorluk Derecesi:</label>
+                    <select id="zorluk" required>
+                        <option value="">Seçiniz</option>
+                        <option value="Kolay">Kolay</option>
+                        <option value="Orta">Orta</option>
+                        <option value="Zor">Zor</option>
+                    </select>
+                    
+                    <button type="submit" id="soru-kaydet">Soru ve Meta Verileri Kaydet</button>
+                </form>
+            </div>
+
+            <h3>Mevcut Sorularınız</h3>
+            <div id="soru-listesi" class="soru-grid">
+                <p>Henüz kaydedilmiş soru yok.</p>
+            </div>
+
+        </section>
+
+        <section id="test-olusturma" class="hidden">
+             <form id="test-kriter-formu">
+                <label for="test-konu">Konu Filtresi:</label>
+                <select id="test-konu">
+                    <option value="Tümü">Tümü</option>
+                    </select>
+             </form>
+             </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

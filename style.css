@@ -1,0 +1,119 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+nav button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Form Stilleri */
+.soru-ekleme-formu, #test-kriter-formu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"], input[type="number"], select, input[type="file"] {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button[type="submit"], #soru-kaydet {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    grid-column: 1 / -1; /* Tüm alanı kapla */
+}
+
+/* Önizleme ve Liste Stilleri */
+#resim-onizleme-alani {
+    grid-column: 1 / -1;
+    text-align: center;
+    min-height: 100px;
+    border: 2px dashed #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#resim-onizleme-alani img {
+    max-width: 100%;
+    max-height: 200px;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+.soru-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.soru-onizleme {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.soru-onizleme img {
+    max-width: 100%;
+    max-height: 100px;
+    height: auto;
+}
+
+.test-alani {
+    border-top: 2px solid #333;
+    padding-top: 20px;
+    margin-top: 20px;
+}
