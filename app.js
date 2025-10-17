@@ -482,25 +482,34 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    const renderTest = (questions) => {
-        olusturulanTestContainer.innerHTML = '<h3>Oluşturulan Test</h3>';
+    const renderTest = (questions, filters) => {
+        // Testin genel başlık/filtre bilgisini oluştur
+        const baslikHTML = `
+            <div id="test-genel-bilgi" style="grid-column: 1 / -1; margin-bottom: 20px; border-bottom: 2px solid #333; padding-bottom: 10px;">
+                <h3 style="margin: 0; padding: 0;">Soru Testi (${questions.length} Soru)</h3>
+                <p style="font-size: 0.9em; margin: 5px 0 0 0;">
+                    Filtreler: Konu: <b>${filters.konu}</b>, 
+                    Alt Konu: <b>${filters.altKonu}</b>, 
+                    Zorluk: <b>${filters.zorluk}</b>
+                </p>
+            </div>
+        `;
+        
+        olusturulanTestContainer.innerHTML = baslikHTML; // Eski içeriği temizle ve başlığı ekle
 
         if (questions.length === 0) {
-            olusturulanTestContainer.innerHTML += '<p>Seçilen kriterlere uygun soru bulunamadı.</p>';
+            olusturulanTestContainer.innerHTML += '<p style="grid-column: 1 / -1;">Seçilen kriterlere uygun soru bulunamadı.</p>';
             return;
         }
 
         questions.forEach((q, index) => {
             const questionDiv = document.createElement('div');
             questionDiv.className = 'test-sorusu-container';
-            questionDiv.style.marginBottom = '20px';
-            questionDiv.style.borderBottom = '1px dashed #ccc';
-            questionDiv.style.paddingBottom = '15px';
             
+            // Konu/Alt Konu bilgisini kaldırdık, sadece soru numarası kaldı
             questionDiv.innerHTML = `
                 <h4>Soru ${index + 1}</h4>
-                <p style="font-size: 0.9em; color: #555;">Konu: ${q.konu} (${q.altKonu}) - Zorluk: ${q.zorluk}</p>
-                <img src="${q.imageBase64}" alt="Test Sorusu ${q.id}" style="max-width: 100%; height: auto; display: block; margin: 10px 0;">
+                <img src="${q.imageBase64}" alt="Test Sorusu ${q.id}">
                 `;
             olusturulanTestContainer.appendChild(questionDiv);
         });
@@ -512,7 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const filters = {
             konu: document.getElementById('test-konu').value,
-            altKonu: document.getElementById('test-alt-konu').value, // YENİ
+            altKonu: document.getElementById('test-alt-konu').value, 
             zorluk: document.getElementById('test-zorluk').value,
             sayi: parseInt(document.getElementById('soru-sayisi').value, 10)
         };
@@ -524,8 +533,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const result = await filterAndSelectQuestions(filters);
         
-        alert(result.message);
-        renderTest(result.selected);
+        // Hata mesajı varsa sadece uyarı ver.
+        if (result.selected.length === 0 && result.message) {
+            alert(result.message);
+        }
+
+        // renderTest'e filtreleri de gönder
+        renderTest(result.selected, filters); 
         
         if (!testOlusturmaSection.classList.contains('hidden')) {
              olusturulanTestContainer.scrollIntoView({ behavior: 'smooth' });

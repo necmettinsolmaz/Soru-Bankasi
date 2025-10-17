@@ -144,39 +144,32 @@ button[type="submit"], #soru-kaydet {
 
 /* Her bir soru kutusu */
 .test-sorusu-container {
-    break-inside: avoid; /* Sayfa/sütun sonlarında bölünmeyi engelle */
-    margin-bottom: 1.5cm; /* Sorular arası dikey boşluk */
-    /* Her bir sorunun belirli bir yüksekliği olması gerekebilir.
-       Bu, resimlerin ve metinlerin sığmasını sağlar.
-       Örneğin, 21cm genişliğinde A4'ün 2 sütunlu hali, her sütun ~9cm, 4 soru için her soru ~6cm yüksekliğinde olmalı.
-       Ancak dinamik içerik için tam yükseklik vermek zor, max-height daha iyi.
-    */
-    max-height: 7cm; /* Yaklaşık olarak her sütunda 4 soruya denk gelecek max yükseklik */
-    overflow: hidden; /* Eğer resim veya metin taşarsa gizle */
-    display: flex; /* İçeriğin düzeni için flex kullan */
+    break-inside: avoid; 
+    margin-bottom: 1.5cm; 
+    
+    /* max-height'i artırdık, böylece soru daha rahat yerleşir */
+    max-height: 8cm; 
+    overflow: hidden; 
+    display: flex; 
     flex-direction: column;
-    align-items: center; /* İçeriği ortala */
-    text-align: center;
+    align-items: flex-start; /* Başlığı ve resmi sola hizala */
+    text-align: left;
+    padding: 0 10px; /* Sütun içinde biraz kenar boşluğu */
 }
 
 .test-sorusu-container h4 {
     font-size: 1.1em;
-    margin-bottom: 5px;
+    margin: 0 0 5px 0; /* Boşlukları düzenle */
     color: #333;
 }
 
-.test-sorusu-container p {
-    font-size: 0.7em;
-    color: #777;
-    margin-bottom: 5px;
-}
 
 .test-sorusu-container img {
-    max-width: 95%; /* Sütun genişliğinin %95'ini kapla */
-    max-height: 5cm; /* Sorunun görsel içeriği için maksimum yükseklik */
+    max-width: 100%; /* Sütun genişliğinin %100'ünü kapla */
+    max-height: 6cm; /* Sorunun görsel içeriği için maksimum yükseklik */
     height: auto;
     display: block;
-    object-fit: contain; /* Resmin oranlarını koruyarak sığdır */
+    object-fit: contain; 
     border: 1px solid #eee;
     padding: 3px;
     background-color: #fff;
@@ -221,13 +214,21 @@ button[type="submit"], #soru-kaydet {
         page-break-after: always; /* Her testin sonunda yeni sayfa */
     }
 
+#test-genel-bilgi {
+        grid-column: 1 / -1; 
+        padding: 0 0 10px 0;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #333;
+    }
+
     .test-sorusu-container {
-        break-inside: avoid-page; /* Soruların sayfa sonlarında bölünmesini engelle */
-        margin-bottom: 0.8cm; /* Yazdırma için daha küçük dikey boşluk */
-        max-height: none; /* Yazdırma için max-height'ı kaldır */
-        overflow: visible; /* Yazdırma için overflow'u kaldır */
-        width: 100%; /* Sütunun tüm genişliğini kullan */
-        display: block; /* Flex yerine blok düzen */
+        break-inside: avoid-page; 
+        margin-bottom: 0.8cm; 
+        max-height: none; 
+        overflow: visible; 
+        width: 100%;
+        display: block;
+        padding: 0;
     }
     .test-sorusu-container img {
         max-width: 100%;
